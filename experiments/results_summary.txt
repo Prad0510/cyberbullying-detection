@@ -1,0 +1,29 @@
+CYBERBULLYING DETECTION - FINAL RESULTS SUMMARY
+==================================================
+
+Dataset: 44378 total samples
+Train: 31064 | Val: 6657 | Test: 6657
+Classes: ['age', 'ethnicity', 'gender', 'not_cyberbullying', 'other_cyberbullying', 'religion']
+
+MODEL COMPARISON
+-----------------
+RoBERTa-only Test Accuracy: 0.9118
+Fusion (RoBERTa+GloVe+PCA) Test Accuracy: 0.9111
+
+FINDING: Fusion did not improve over RoBERTa alone, suggesting RoBERTa's
+contextual embeddings already capture most of the useful signal, while
+simple mean-pooled GloVe vectors add mostly redundant/noisy information.
+
+EXAMPLE PREDICTIONS
+--------------------
+"You are so stupid, nobody likes you, just disappear" -> other_cyberbullying (69.12%)
+"Great weather today, going for a walk in the park" -> not_cyberbullying (96.26%)
+"Go back to your country, you don't belong here" -> not_cyberbullying (59.55%) [MISCLASSIFIED - actually ethnicity-based bullying]
+"Girls shouldn't be allowed to play video games, they're bad at it" -> gender (89.48%)
+"Happy birthday! Hope you have an amazing day" -> not_cyberbullying (93.63%)
+
+LIMITATION OBSERVED
+--------------------
+The model struggles with indirect/implicit hate speech that lacks explicit
+slurs or aggressive language (e.g. the ethnicity example above), consistent
+with the "contextual ambiguity" limitation noted in the reference paper.
