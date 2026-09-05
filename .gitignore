@@ -13,7 +13,6 @@ env/
 
 # Datasets
 data/raw/*
-data/processed/*
 
 # Large model files
 models/*
